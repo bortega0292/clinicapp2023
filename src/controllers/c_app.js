@@ -1,9 +1,12 @@
 //Libreria para formato de fechas
 var helpers = require('handlebars-helpers')();
 const pool = require('../settings/db');
+const moment = require('moment');
 
 let index = async(req, res) =>
-{
+{   
+    const fecha = moment().format('YYYY-MM-DD HH:mm:ss');
+    let Add_Dte = fecha;
     const mostPacientes = await pool.query(`CALL ListPacientes`);
     const mostGastos = await pool.query(`CALL ListGastos`);
     const mostUsuarios = await pool.query('CALL ListUsuarios');

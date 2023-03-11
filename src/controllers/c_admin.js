@@ -1,6 +1,5 @@
 // Extraer Fecha de sistema con moment
 const moment = require('moment');
-
 const pool = require('../settings/db');
 
 // Envia Procedimientos a HandleBars Admin
