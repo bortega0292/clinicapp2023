@@ -1,4 +1,4 @@
-// Extraer Fecha de sistema con moment
+// Extraer Fecha de sistema con moment 
 const moment = require('moment');
 const pool = require('../settings/db');
 
