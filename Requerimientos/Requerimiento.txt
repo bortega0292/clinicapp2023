@@ -1,0 +1,35 @@
+[OK]// agregar combobox (Nombre Paciente) a Expediente y Caja
+[OK]// Un paciente puede tener Varios Expedientes
+[OK]// Cambiar fondo Light Login, Registro y el Index
+[OK]// Revisar la hora errada al ingresar Gasto
+[OK]// Quitar postick de Index
+--------------------------------------------------------
+0. Index (OK)
+[OK] Modificar cards de actividad (quitar usuario y agregar, caja y gastos)
+[OK] Modificar gird poner ultimos 10 pacientes
+
+1. Registrar Pasiente (OK)
+1.1 Listar Pacientes (OK)
+[OK] Pasar (2.ANAMNESIS) a Reguistro Paciente
+[OK] Agregar boton que redirija a expediente
+
+
+2. Registrar Expediente (OK)
+2.1 Listar Expediente (NO VA)
+[OK] Agregar a la barra de menún Registrar/ Ver
+[OK] Modal nombre Registro de Expediente, Dividir en 2 (Diagnostico/Tratamiento)
+[OK] Diagnostico = Imagen de dientes 
+[OK]             + Checkbox de piezas dentales
+[OK] Tratamiento = Comentario
+
+3. Registrar Caja (OK) Registrar Factura
+3.1 Listar Caja (OK) Listar Facturas
+[OK] 3.1 Agregar: Paciente(ComboBox),TIPO_PAGO,MONTO,ID_RECIBO,FECHA,ABONO,SALDO,EXPEDIENTE,TRATAMIENTO
+[OK] 3.1 Agregar: Monto Total por cobrar (en el Header)
+
+4. Registrar Gasto (OK)
+4.1 Listar Gastos  (OK)
+[OK] Agregar: monto del gasto
+[OK] Agregar: Monto Total pendiente por pagar (en el Header)
+[OK] Agregar botón cancelar
+[OK] Agregar botón Editar

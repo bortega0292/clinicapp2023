@@ -1,0 +1,363 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+<link rel="stylesheet" type="text/css" href="/css/Admin/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+<!--Importando Sweet Alert 2-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
+
+<!-- Importar tema Dark en Alertas  
+<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+-->
+
+<!--Funciones Sweet Alert-->
+
+<!--Ver Expedientes de Paciente-->
+<script>
+	function AlertVer(s, p, tipo, func1, func2, ruta, id, paciente)
+	{
+		Swal.fire
+			(
+				{
+					title: '¿Desea ver los expedientes de ' + "<p style='color:green'>" + paciente + '?',
+					text: 'Será redirigido a la página de '+ tipo,
+					icon: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#115f23',
+					cancelButtonColor: '#99d600',
+					cancelButtonText: 'No',
+					confirmButtonText: func1
+				}
+			).then((result) => 
+			{
+				if (result.isConfirmed) 
+				{	
+					 window.location = ruta + id;
+				}
+			}
+			)
+	}
+</script>
+
+<!--Salir-->
+<script>
+	function AlertSalir() {
+		Swal.fire({
+			title: '¿Seguro desea Salir?',
+			text: 'Se cerrará su sessión de inmediato',
+			icon: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#115f23',
+			cancelButtonColor: '#99d600',
+			cancelButtonText: 'Cancelar',
+			confirmButtonText: 'Salir'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				window.location = '/req/logout';
+			}
+		}
+		)
+	}
+</script>
+
+<!--Gasto Registrado / Paciente Registrado-->
+<script>
+	function AlertMsjOk(title) {
+		Swal.fire
+			(
+				{
+					position: 'center',
+					icon: 'success',
+					title: title,
+					showConfirmButton: false,
+					timer: 3000
+				}
+			)
+	}
+</script>
+
+<!--Eliminar, Cancelar, Editar, Ver, Gasto/Paciente-->
+<script>
+	function AlertDel(s, p, tipo, func1, func2, ruta, id, desc) 
+	{
+		Swal.fire
+			(
+				{
+					title: '¿Seguro desea ' + func1 + '?',
+					text:  s + ' ' + tipo + ' se va a ' + func1 + ' ' + p,
+					icon: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#115f23',
+					cancelButtonColor: '#99d600',
+					cancelButtonText: 'Atras',
+					confirmButtonText: func1
+				}
+			).then((result) => 
+			{
+				if (result.isConfirmed) 
+				{	
+
+					 if(func1 != 'Actualizar' && func1 !='Vincular' && func1 != 'Pagar')
+					 {
+						Swal.fire
+							(
+								{
+									position: 'center',
+									icon: 'success',
+									title: tipo + ' ' + func2 + ' ' + "<p style='color:green'>" + desc + "</p>",
+									showConfirmButton: false,
+									timer: 3000
+								}
+							)
+					 };
+					 
+					 window.location = ruta + id;
+				}
+			}
+			)
+	}
+</script>
+<!--Fin Funciones Sweet Alert-->
+
+<center>
+
+	<body class="overlay-scrollbar">
+		<div class="navbar">
+			<font class="sidebar-nav-letter" size="6">Consultorio Dental - <font face="Monotype Corsiva" size="6">
+					Dr. Abdul Sanchez Latiff</font>
+			</font>
+			<h6 class="sidebar-nav-letter" size="2">ODONTOLOGIA GENERAL Y ESPECIALIZADA - Hospital Colon 4 Altos
+				Piso 5 Consultorio 509
+			</h6>
+		</div>
+</center>
+
+<div class="sidebar">
+	<ul class="sidebar-nav">
+		<!--<li class="sidebar-nav-item">
+			<a href="#" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-bars" onclick="collapseSidebar()"></i>
+				</div>
+				<span class="sidebar-nav-link"></span>
+			</a>
+		</li>-->
+
+		<li class="sidebar-nav-item">
+			<a href="#" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-user-circle a"></i>
+				</div>
+				{{#each DataSession}}
+				<span class="sidebar-nav-link" style="font-weight:bold;">{{user_log}}</span>
+				{{else}}
+				<span class="sidebar-nav-link">NO USER</span>
+				{{/each}}
+			</a>
+		</li>
+		<!--<li class="sidebar-nav-item">
+			<a href="#" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-home"></i>
+				</div>
+				<span class="sidebar-nav-link">Inicio</span>
+			</a>
+		</li>-->
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#AddPacienteModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-user-plus"></i>
+				</div>
+				&nbsp;<span class="sidebar-nav-link">Reg. Paciente</span>
+			</a>
+		</li>
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#ListPacienteModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-user-alt"></i>
+				</div>
+				<span class="sidebar-nav-link">Ver Pacientes</span>
+			</a>
+		</li>
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#AddExpedienteModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-file-signature"></i>
+				</div>
+				<span class="sidebar-nav-link">Reg. Expediente</span>
+			</a>
+		</li>
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#AddCajaModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-cash-register"></i>
+				</div>
+				<span class="sidebar-nav-link">Reg. Factura</span>
+			</a>
+		</li>
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#FacturaModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-desktop"></i>
+				</div>
+				<span class="sidebar-nav-link">Ver Factura</span>
+			</a>
+		</li>
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#AddGastoModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-comment-medical"></i>
+				</div>
+				<span class="sidebar-nav-link">Reg. Gasto</span>
+			</a>
+		</li>
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#GastoModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-comment-dollar"></i>
+				</div>
+				<span class="sidebar-nav-link">Ver Gastos</span>
+			</a>
+		</li>
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#AddCitaModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-calendar-alt"></i>
+				</div>
+				&nbsp;<span class="sidebar-nav-link">Agd. Cita</span>
+			</a>
+		</li>
+		<li class="sidebar-nav-item">
+			<a href="#" data-toggle="modal" data-target="#AddUsuarioModal" class="sidebar-nav-link active">
+				<div>
+					<i class="fas fa-user-md"></i>
+				</div>
+				&nbsp;<span class="sidebar-nav-link">Reg. Usuario</span>
+			</a>
+		</li>
+	    <p class="sidebar-nav-link" style="font-weight:bold;">________________________________________</p>
+		<li class="sidebar-nav-item">
+			<a href="#" class="sidebar-nav-link active" onclick="AlertSalir()">
+				<div>
+					<i class="fa fa-power-off"></i>
+				</div>
+				<span class="sidebar-nav-link">Salir</span>
+				<br>
+			</a>
+		</li>
+		<!--<br>
+		<li class="sidebar-nav-item">
+			<a class="icon-light" href="#" onclick="switchTheme()">
+				<center>
+					<i class="fas fa-moon dark-icon">
+						&nbsp;Oscuro&nbsp;&nbsp;
+					</i>
+					<i class="fas fa-sun light-icon">
+						&nbsp;Claro&nbsp;&nbsp;
+					</i>
+				</center>
+			</a>
+		</li>-->
+	</ul>
+</div>
+<!-- end sidebar -->
+<!-- main content -->
+<div class="wrapper">
+
+	<div class="row">
+		<div class="col-3">
+			<div class="counter bg-green">
+				<h5 class="card-title">Actividad</h5>
+				{{#each CountUsuarios}}
+				<h6>
+					<hr>
+					<i class="fas fa-user-friends"></i>&nbsp;&nbsp;
+					Usuarios Registrados: {{total_usuarios}}
+				</h6>
+				{{/each}}
+				{{#each CountPacientes}}
+				<h6>
+					<hr>
+					<i class="fas fa-user-check"></i>&nbsp;&nbsp;
+					Pacientes Registrados: {{total_pacientes}}
+				</h6>
+				{{/each}}
+				{{#each SumaGastos}}
+				<h6>
+					<hr>
+					<i class="fas fa-donate"></i>&nbsp;&nbsp;
+					Total Gastos: {{toFixed suma_gastos 2}}$
+				</h6>
+				{{/each}}
+				{{#each SumaFacturas}}
+				<h6>
+					<hr>
+					<i class="fas fa-hand-holding-usd"></i>&nbsp;&nbsp;
+					Total Facturas: {{toFixed suma_facturas 2}}$
+				</h6>
+				{{/each}} 
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12 col-m-12 col-sm-12">
+			<div class="card">
+				<div class="card-header">
+
+					<h3>Citas Pendientes</h3>
+				</div>
+				<div class="card-content">
+					<table rules="rows">
+						<thead>
+							<tr>
+								<th>NO. CITA</th>
+								<th>PACIENTE</th>
+								<th>FECHA</th>
+								<th>HORA</th>
+								<th>ESTADO</th>
+								<th>OBSERVACIÓN</th>
+								<th>MEDICO</th>
+								<th>POR</th>
+								<th>FECHA</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each ListCitas}}
+							<tr>
+								<td>#{{id}}</td>
+								<td>{{paciente}}</td>
+								<td>{{moment date_time format="DD-MMM-YYYY"}}</td>
+								<td>{{moment date_time format="h:mm a"}}</td>
+								<td>{{estado}}</td>
+								<td>{{observations}}</td>
+								<td>{{medico}}</td>
+								<td>{{usuario}}</td>
+								<td>{{moment add_dte format="DD-MM-YYYY h:mm a"}}</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br><br><br><br><br>
+	<center class="sidebar-nav-letter">
+		<div>
+			<hr>
+			<img src="/img/DevBo.png" alt="Logo" style="height: 40px; width: 40px;"> <br>
+			<samp class="sidebar-nav-letter">Developed by Benerando Ortega</samp>
+		</div>
+	</center>
+
+</div>
+{{>modals}}
+<!-- end main content -->
+<!-- import script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="/js/index.js"></script>
+<!-- end import script -->
+</body>

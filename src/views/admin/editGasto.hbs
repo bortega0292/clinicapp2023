@@ -1,0 +1,48 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<!--Importando Sweet Alert 2-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
+<!--Eliminar, Cancelar, Editar,  Gasto/Paciente-->
+<script>
+    function AlertMsjOk(title) {
+        Swal.fire
+            (
+                {
+                    position: 'center',
+                    icon: 'success',
+                    title: title,
+                    showConfirmButton: false,
+                    timer: 3000
+                }
+            )
+    }
+</script>
+
+<br><br>
+<div class="container">
+    <div class="login-width">
+        <div class="col-md- col-lg-5 mx-auto">
+            <center>
+                <h2 style="color: rgb(50,50,50); font-size: 40px;">
+                    Edicion de Gasto
+                    <hr>
+            {{#each ViewGasto}}
+                    <h4 class="card-subtitle mb-2 text-muted">{{tittle}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Día: {{moment add_dte format="DD-MMMM-YYYY"}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Hora: {{moment add_dte format="h:mm a"}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Por: {{usuario}}</h9>
+                    <h6 class="card-subtitle mb-2 text-muted">Monto: {{toFixed amount 2}}$</h6>
+                </h2>
+            </center>
+            <form action="" method="POST">
+                <br>
+                    <div class="row">
+                        <textarea id="description" name="description" rows="4" class="form-control">{{description}}</textarea>
+                    <hr>
+                        <button class="btn btn-success btn-block" onclick="AlertMsjOk('Gasto Actualizado!')">Actualizar</button>
+                    </div>
+            </form>
+        {{/each}}
+        </div>
+    </div>
+</div>

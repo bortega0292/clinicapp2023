@@ -1,0 +1,63 @@
+body
+{
+    /*background: rgba(0, 0, 0, 0.589) !important;*/
+    background-image: url('/img/fondo_claro.png');
+}
+#navbar
+{
+    background-color: hsla(0, 0%, 100%, 0.507) !important;
+
+}
+
+.sidebar-nav-letter 
+{
+	color: black;
+}
+
+a{
+    font-size: 20px;
+}
+
+#register
+{
+    color: rgb(216, 205, 255);
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.row 
+{
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+}
+
+.btn-info 
+{
+    background-color: #76a500 !important;
+    border-color: #76a500 !important;
+    color: #ffffff;
+}
+
+.login-width
+{
+    width: 65%;
+    margin-left: 17%;
+}
+
+.modal-dialog {
+    width: 75% !important;
+}
+.modal-content
+{
+    width: 100% !important;
+}
+
+.define 
+{
+    margin-top: 554px;
+}

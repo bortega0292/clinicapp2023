@@ -1,0 +1,221 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<!--Importando Sweet Alert 2-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
+
+{{#each ViewExpediente}}
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-body">
+          <center>
+            <h5>Expediente #{{id}}</h5>
+            <div class="form-group">              
+              <div>
+                <i class="fas fa-user-alt"></i>
+              </div>
+              <h5 class="modal-title">{{nombre}} {{apellido}}</h5>
+              <h8 class="modal-title">{{cedula}}</h8>
+            </div>
+            <hr>
+            <h5 class="modal-title">Diagnostico</h5>
+            <img src="/img/odontograma.png" alt="Odontograma" style="height: 100%; width: 100%;">
+            <br>
+            <div class="form-group">
+
+              {{#if tooth_18}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>18</label> &nbsp;
+              {{/if}}        
+              {{#if tooth_17}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>17</label> &nbsp;
+              {{/if}}
+              {{#if tooth_16}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>16</label> &nbsp;
+              {{/if}}
+              {{#if tooth_15}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>15</label> &nbsp;
+              {{/if}}
+              {{#if tooth_14}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>14</label> &nbsp;
+              {{/if}}
+              {{#if tooth_13}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>13</label> &nbsp;
+              {{/if}}
+              {{#if tooth_12}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>12</label> &nbsp;
+              {{/if}}
+              {{#if tooth_11}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>11</label> &nbsp;
+              {{/if}}
+              <br>
+
+              {{#if tooth_48}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>48</label> &nbsp;
+              {{/if}}
+              {{#if tooth_47}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>47</label> &nbsp;
+              {{/if}}
+              {{#if tooth_46}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>46</label> &nbsp;
+              {{/if}}
+              {{#if tooth_45}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>45</label> &nbsp;
+              {{/if}}
+              {{#if tooth_44}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>44</label> &nbsp;
+              {{/if}}
+              {{#if tooth_43}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>43</label> &nbsp;
+              {{/if}}
+              {{#if tooth_42}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>42</label> &nbsp;
+              {{/if}}
+              {{#if tooth_41}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>41</label> &nbsp;
+              {{/if}}
+              <br><br>
+
+              {{#if tooth_21}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>21</label> &nbsp;
+              {{/if}}
+              {{#if tooth_22}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>22</label> &nbsp;
+              {{/if}}
+              {{#if tooth_23}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>23</label> &nbsp;
+              {{/if}}
+              {{#if tooth_24}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>24</label> &nbsp;
+              {{/if}}
+              {{#if tooth_25}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>25</label> &nbsp;
+              {{/if}}
+              {{#if tooth_26}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>26</label> &nbsp;
+              {{/if}}
+              {{#if tooth_27}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>27</label> &nbsp;
+              {{/if}}
+              {{#if tooth_28}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>28</label> &nbsp;
+              {{/if}}
+              <br>
+              {{#if tooth_31}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>31</label> &nbsp;
+              {{/if}}
+              {{#if tooth_32}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>32</label> &nbsp;
+              {{/if}}
+              {{#if tooth_33}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>33</label> &nbsp;
+              {{/if}}
+              {{#if tooth_34}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>34</label> &nbsp;
+              {{/if}}
+              {{#if tooth_35}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>35</label> &nbsp;
+              {{/if}}
+              {{#if tooth_36}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>36</label> &nbsp;
+              {{/if}}
+              {{#if tooth_37}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>37</label> &nbsp;
+              {{/if}}
+              {{#if tooth_38}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>38</label> &nbsp;
+              {{/if}}
+
+            </div>
+            <hr>
+            <h5 class="modal-title">Tratamiento</h5>
+            <div class="form-group">
+              <textarea disabled rows="5" name="treatment" placeholder="{{treatment}}" class="form-control"></textarea>
+            </div>
+            <hr>
+            <h5 class="modal-title">Factura</h5>
+            <div class="form-group">
+            {{#if invoice}}
+          <table class="all" border="2" style="text-align:center; width:100%">
+            <thead>
+                <tr>
+                <th>No.</th>
+                <th>Monto</th>
+                <th>Cancelado</th>
+                <th>Fecha</th>
+                </tr>     
+            </thead> 
+            <tbody>
+              <tr>
+                <td>#{{invoice}}</td>
+                <td>{{toFixed amount 2}}$</td>
+                <td>{{canceled}}</td>
+                <td>{{moment invoice_dte format="DD-MMM-YYYY h:m a"}}</td>
+              </tr>
+            </tbody>
+          </table>
+            {{else}}
+            <h6 class="modal-title" style="color:rgb(200, 0, 0)">EXPEDIENTE NO FACTURADO</h6>
+            {{/if}}
+{{/each}}
+<br>
+<h5 class="modal-title">Pagos</h5>
+{{#if ViewPago}}
+          <table class="all" border="2" style="text-align:center; width:100%">
+            <thead>
+                <tr>
+                <th>No.</th>
+                <th>Monto</th>
+                <th>Tipo</th>
+                <th>Factura</th>
+                <th>Fecha</th>
+                </tr>     
+            </thead>
+{{/if}}
+{{#each ViewPago}}
+            <tbody>
+              <tr>
+                <td>#{{id}}</td>
+                <td>{{toFixed payment 2}}$</td>
+                <td>{{paymtype}}</td>
+                 <td>#{{invoice}}</td>
+                <td>{{moment add_dte format="DD-MMM-YYYY h:m a"}}</td>
+              </tr>
+            </tbody>
+{{/each}}
+          </table>
+            </div>       
+          </center>
+        </div>
+      </div>
+    </div>

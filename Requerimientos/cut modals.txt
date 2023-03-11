@@ -1,0 +1,25 @@
+            
+            <div class="col-4">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{title}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{hora}}</h6>
+                  <p class="card-text">{{ descript}}</p>
+                  <a href="/support/deleteArticulo/{{id}}" class="btn btn-danger d-block">Eliminar</a>
+                  <hr>
+                  <a href="/support/editArticulo/{{id}}" class="btn btn-success d-block">Editar</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-4">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">sin articulos </h5>
+                  <p class="card-text">
+                    Aun no se tiene articulos creados para mostrar
+                  </p>
+                  <hr>
+                </div>
+              </div>
+            </div>

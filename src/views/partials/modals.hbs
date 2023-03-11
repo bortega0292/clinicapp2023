@@ -1,0 +1,887 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+  integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/modals.css">
+
+<body>
+
+  <!-- Modal #1 Registrar Paciente -->
+  <div class="modal fade" id="AddPacienteModal" tabindex="-1" aria-labelledby="AddPAcienteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AddPacienteModalLabel"><i class="fas fa-user-plus"></i>   Registrar Paciente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/support/addPaciente" method="POST">
+            <div class="form-group">
+              <input type="text" name="id_doc" class="form-control" placeholder="Cédula / Pasaporte" autofocus>
+            </div>
+            <div class="form-group">
+              <input type="text" name="first_name" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="form-group">
+              <input type="text" name="last_name" class="form-control" placeholder="Apellido">
+            </div>
+            <div class="form-group">
+              <input type="date" name="brth_dte" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type="text" name="address_dir" class="form-control" placeholder="Dirección">
+            </div>
+            <div class="form-group">
+              <input type="text" name="phone" class="form-control" placeholder="Teléfono / Celular">
+            </div>
+            <div class="form-group">
+              <input type="text" name="email" class="form-control" placeholder="Correo Electrónico">
+            </div>
+            <div class="form-group">
+              <input type="text" name="workplace" class="form-control" placeholder="Lugar de Trabajo">
+            </div>
+            <div class="form-group">
+              <input type="text" name="ocupation" class="form-control" placeholder="Ocupación">
+            </div>
+            <div class="form-group">
+              <input type="text" name="ss_doc" class="form-control" placeholder="No. Seguro Social">
+            </div>
+            <div class="form-group">
+              <select name="treatment" id="treatment" required="required" class="form-control">
+                <option value="">--TRATAMIENTO MEDICO--</option>
+                <option value=0>No</option>
+                <option value=1>Si</option>
+                <option value=2>No Sabe</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select name="allergy" id="allergy" required="required" class="form-control">
+                <option value="">--ALERGIAS--</option>
+                <option value=0>No</option>
+                <option value=1>Si</option>
+                <option value=2>No Sabe</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select name="asthma" id="asthma" required="required" class="form-control">
+                <option value="">--ASMA--</option>
+                <option value=0>No</option>
+                <option value=1>Si</option>
+                <option value=2>No Sabe</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select name="diabts" id="diabts" required="required" class="form-control">
+                <option value="">--DIABETES--</option>
+                <option value=0>No</option>
+                <option value=1>Si</option>
+                <option value=2>No Sabe</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select name="hypert" id="hypert" required="required" class="form-control">
+                <option value="">--HIPERTENSION--</option>
+                <option value=0>No</option>
+                <option value=1>Si</option>
+                <option value=2>No Sabe</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select name="pregncy" id="pregncy" required="required" class="form-control">
+                <option value="">--EMBARAZO--</option>
+                <option value=0>No</option>
+                <option value=1>Si</option>
+                <option value=2>No Sabe</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success btn-block" onclick="AlertMsjOk('¡Paciente Registrado!')">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal #2 Ver Pacientes-->
+  <div class="modal fade" id="ListPacienteModal" tabindex="-1" aria-labelledby="ListPacienteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ListPacienteModalLabel"><i class="fas fa-user-alt"></i>   Pacientes</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            {{#each ListPacientes}}
+            <div class="col-5">
+              <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                  <h5 class="card-subtitle mb-2 text-muted">{{first_name}} {{last_name}} - {{age}} Años</h5>
+                  <p class="card-subtitle mb-2 text-muted">Cédula: {{id_doc}}</p>
+                  <p class="card-subtitle mb-2 text-muted">Seguro Social: {{ss_doc}}</p>
+                  <p class="card-subtitle mb-2 text-muted">Fecha Nacimiento: {{moment brth_dte format="DD-MMM-YYYY"}}</p>
+                  <hr>
+                  <h5 class="card-subtitle mb-2 text-muted">{{workplace}} - {{ocupation}}</h5>
+                  <p class="card-subtitle mb-2 text-muted">{{address_dir}}</p>
+                  <p class="card-subtitle mb-2 text-muted">{{phone}}</p>
+                  <p class="card-subtitle mb-2 text-muted">{{email}}</p>
+                  <hr>
+                  <p class="card-subtitle mb-2 text-muted"><b>Tratamiento Médico: </b>{{treatment}}</p>
+                  <p class="card-subtitle mb-2 text-muted"><b>Alergia: </b>{{allergy}}</p>
+                  <p class="card-subtitle mb-2 text-muted"><b>Asma: </b>{{asthma}}</p>
+                  <p class="card-subtitle mb-2 text-muted"><b>Diabetes: </b>{{diabts}}</p>
+                  <p class="card-subtitle mb-2 text-muted"><b>Hipertensión: </b>{{hypert}}</p>
+                  <p class="card-subtitle mb-2 text-muted"><b>Embarazo: </b>{{pregncy}}</p>
+                  <hr>
+                  <a href="#" class="btn btn-info d-block"
+                    onclick="AlertDel('El','los datos','Paciente','Actualizar','Actualizado','/support/editPaciente/',{{id}},'{{first_name}} {{last_name}}')">Editar</a>
+                  <br>
+                 <!--<a href="#" data-toggle="modal" data-target="#ListExpedienteModal" class="btn btn-success d-block">Expediente</a>-->
+                  <a href="#" class="btn btn-success d-block"
+                    onclick="AlertVer('El','','Expedientes','Ver','Redirigiendo','/support/listExpedientesPaciente/',{{id}},'{{first_name}} {{last_name}}')">Expedientes</a>
+                  <br>
+                  <a href="#" id="BtnEliminarExpediente" class="btn btn-danger d-block"
+                    onclick="AlertDel('El','permanentemente','Paciente','Eliminar','Eliminado','/support/deletePaciente/',{{id}},'{{first_name}} {{last_name}}')">Eliminar</a>
+                  <hr>
+                </div>
+              </div>
+            </div>
+            {{else}}
+            <div class="col-4">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Sin Pacientes </h5>
+                  <p class="card-text">
+                    Aun no se tiene Pacientes creados para mostrar
+                  </p>
+                  <hr>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal #3 Registrar Expediente -->
+  <div class="modal fade" id="AddExpedienteModal" tabindex="-1" aria-labelledby="AddExpedienteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AddExpedienteModalLabel"><i class="fas fa-file-signature"></i>   Registrar Expediente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/support/addExpediente" method="POST">
+            <center>
+              <div class="form-group">
+                <select name="patient" id="patient" required="required" class="form-control">
+                  <option value="">--PACIENTE--</option>
+                  {{#each ListPacientes}}
+                  <option value={{id}}>{{last_name}} {{first_name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <hr>
+              <h5 class="modal-title">Diagnostico</h5>
+              <img src="/img/odontograma.png" alt="Odontograma" style="height: 100%; width: 100%;">
+              <br>
+              <div class="form-group">
+                <input type="checkbox" id="tooth_18" name="tooth_18" value=1>
+                <label for="tooth_18">18</label> &nbsp;
+                <input type="checkbox" id="tooth_17" name="tooth_17" value=1>
+                <label for="tooth_17">17</label> &nbsp;
+                <input type="checkbox" id="tooth_16" name="tooth_16" value=1>
+                <label for="tooth_16">16</label> &nbsp;
+                <input type="checkbox" id="tooth_15" name="tooth_15" value=1>
+                <label for="tooth_15">15</label> &nbsp;
+                <input type="checkbox" id="tooth_14" name="tooth_14" value=1>
+                <label for="tooth_14">14</label> &nbsp;
+                <input type="checkbox" id="tooth_13" name="tooth_13" value=1>
+                <label for="tooth_13">13</label> &nbsp;
+                <input type="checkbox" id="tooth_12" name="tooth_12" value=1>
+                <label for="tooth_12">12</label> &nbsp;            
+                <input type="checkbox" id="tooth_11" name="tooth_11" value=1>
+                <label for="tooth_11">11</label> &nbsp;
+                <br>
+                <input type="checkbox" id="tooth_48" name="tooth_48" value=1>
+                <label for="tooth_48">48</label>
+                <input type="checkbox" id="tooth_47" name="tooth_47" value=1>
+                <label for="tooth_47">47</label> &nbsp;                
+                <input type="checkbox" id="tooth_46" name="tooth_46" value=1>
+                <label for="tooth_46">46</label> &nbsp;
+                <input type="checkbox" id="tooth_45" name="tooth_45" value=1>
+                <label for="tooth_45">45</label> &nbsp;
+                <input type="checkbox" id="tooth_44" name="tooth_44" value=1>
+                <label for="tooth_44">44</label> &nbsp;
+                <input type="checkbox" id="tooth_43" name="tooth_43" value=1>
+                <label for="tooth_43">43</label> &nbsp;
+                <input type="checkbox" id="tooth_42" name="tooth_42" value=1>
+                <label for="tooth_42">42</label> &nbsp;
+                <input type="checkbox" id="tooth_41" name="tooth_41" value=1>
+                <label for="tooth_41">41</label> &nbsp;
+                <br><br>
+                <input type="checkbox" id="tooth_21" name="tooth_21" value=1>
+                <label for="tooth_21">21</label> &nbsp;
+                <input type="checkbox" id="tooth_22" name="tooth_22" value=1>
+                <label for="tooth_22">22</label> &nbsp;
+                <input type="checkbox" id="tooth_23" name="tooth_23" value=1>
+                <label for="tooth_23">23</label> &nbsp;
+                <input type="checkbox" id="tooth_24" name="tooth_24" value=1>
+                <label for="tooth_24">24</label> &nbsp;
+                <input type="checkbox" id="tooth_25" name="tooth_25" value=1>
+                <label for="tooth_25">25</label> &nbsp;
+                <input type="checkbox" id="tooth_26" name="tooth_26" value=1>
+                <label for="tooth_26">26</label> &nbsp;
+                <input type="checkbox" id="tooth_27" name="tooth_27" value=1>
+                <label for="tooth_27">27</label> &nbsp;
+                <input type="checkbox" id="tooth_28" name="tooth_28" value=1>
+                <label for="tooth_28">28</label> &nbsp;
+                <br>
+                <input type="checkbox" id="tooth_31" name="tooth_31" value=1>
+                <label for="tooth_31">31</label> &nbsp;
+                <input type="checkbox" id="tooth_32" name="tooth_32" value=1>
+                <label for="tooth_32">32</label> &nbsp;
+                <input type="checkbox" id="tooth_33" name="tooth_33" value=1>
+                <label for="tooth_33">33</label> &nbsp;
+                <input type="checkbox" id="tooth_34" name="tooth_34" value=1>
+                <label for="tooth_34">34</label> &nbsp;
+                <input type="checkbox" id="tooth_35" name="tooth_35" value=1>
+                <label for="tooth_35">35</label> &nbsp;
+                <input type="checkbox" id="tooth_36" name="tooth_36" value=1>
+                <label for="tooth_36">36</label> &nbsp;
+                <input type="checkbox" id="tooth_37" name="tooth_37" value=1>
+                <label for="tooth_37">37</label> &nbsp;
+                <input type="checkbox" id="tooth_38" name="tooth_38" value=1>
+                <label for="tooth_38">38</label> &nbsp;
+                <br>
+              </div>
+              <hr>
+              <h5 class="modal-title">Tratamiento</h5>
+              <div class="form-group">
+                <textarea rows="5" name="treatment" placeholder="Describa el tratamiento que debe llevar el paciente..."
+                  class="form-control"></textarea>
+              </div>
+              <hr>
+            </center>
+            <div class="form-group">
+              <button class="btn btn-success btn-block" onclick="AlertMsjOk('¡Expediente Registrado!')">
+                Guardar
+              </button>
+            </div>
+          </form>
+          <!--Fin de Formulario Registro de Expediente-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal #4 Ver Expediente -->
+  <div class="modal fade" id="ListExpedienteModal" tabindex="-1" aria-labelledby="ListExpedienteModalLabel"
+    aria-hidden="true">
+    {{#each ListExpediente}}
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header"> 
+          <h5 class="modal-title" id="ListExpedienteModalLabel">Expediente #{{id}}-{{patient}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+            <div class="form-group">              
+              <div>
+                <i class="fas fa-user-alt"></i>
+              </div>
+              <h5 class="modal-title">{{nombre}} {{apellido}}</h5>
+              <h8 class="modal-title">{{cedula}}</h8>
+            </div>
+            <hr>
+            <h5 class="modal-title">Diagnostico</h5>
+            <img src="/img/odontograma.png" alt="Odontograma" style="height: 100%; width: 100%;">
+            <br>
+            <div class="form-group">
+              {{#if tooth_1}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>1</label> &nbsp;
+              {{/if}}
+              {{#if tooth_2}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>2</label> &nbsp;
+              {{/if}}
+              {{#if tooth_3}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>3</label> &nbsp;
+              {{/if}}
+              {{#if tooth_4}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>4</label> &nbsp;
+              {{/if}}
+              {{#if tooth_5}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>5</label> &nbsp;
+              {{/if}}
+              {{#if tooth_6}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>6</label> &nbsp;
+              {{/if}}
+              {{#if tooth_7}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>7</label> &nbsp;
+              {{/if}}
+              {{#if tooth_8}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>8</label> &nbsp;
+              {{/if}}
+              {{#if tooth_9}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>9</label> &nbsp;
+              {{/if}}
+              {{#if tooth_10}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>10</label> &nbsp;
+              {{/if}}
+              {{#if tooth_11}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>11</label> &nbsp;
+              {{/if}}
+              {{#if tooth_12}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>12</label> &nbsp;
+              {{/if}}
+              {{#if tooth_13}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>13</label> &nbsp;
+              {{/if}}
+              {{#if tooth_14}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>14</label> &nbsp;
+              {{/if}}
+              {{#if tooth_15}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>15</label> &nbsp;
+              {{/if}}
+              {{#if tooth_16}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>16</label> &nbsp;
+              {{/if}}
+              {{#if tooth_17}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>17</label> &nbsp;
+              {{/if}}
+              {{#if tooth_18}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>18</label> &nbsp;
+              {{/if}}
+              {{#if tooth_19}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>19</label> &nbsp;
+              {{/if}}
+              {{#if tooth_20}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>20</label> &nbsp;
+              {{/if}}
+              {{#if tooth_21}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>21</label> &nbsp;
+              {{/if}}
+              {{#if tooth_22}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>22</label> &nbsp;
+              {{/if}}
+              {{#if tooth_23}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>23</label> &nbsp;
+              {{/if}}
+              {{#if tooth_24}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>24</label> &nbsp;
+              {{/if}}
+              {{#if tooth_25}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>25</label> &nbsp;
+              {{/if}}
+              {{#if tooth_26}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>26</label> &nbsp;
+              {{/if}}
+              {{#if tooth_27}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>27</label> &nbsp;
+              {{/if}}
+              {{#if tooth_28}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>28</label> &nbsp;
+              {{/if}}
+              {{#if tooth_29}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>29</label> &nbsp;
+              {{/if}}
+              {{#if tooth_30}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>30</label> &nbsp;
+              {{/if}}
+              {{#if tooth_31}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>31</label> &nbsp;
+              {{/if}}
+              {{#if tooth_32}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>32</label> &nbsp;
+              {{/if}}
+              {{#if tooth_33}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>33</label> &nbsp;
+              {{/if}}
+              {{#if tooth_34}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>34</label> &nbsp;
+              {{/if}}
+              {{#if tooth_35}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>35</label> &nbsp;
+              {{/if}}
+              {{#if tooth_36}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>36</label> &nbsp;
+              {{/if}}
+              {{#if tooth_37}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>37</label> &nbsp;
+              {{/if}}
+              {{#if tooth_38}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>38</label> &nbsp;
+              {{/if}}
+              {{#if tooth_39}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>39</label> &nbsp;
+              {{/if}}
+              {{#if tooth_40}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>40</label> &nbsp;
+              {{/if}}
+              {{#if tooth_41}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>41</label> &nbsp;
+              {{/if}}
+              {{#if tooth_42}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>42</label> &nbsp;
+              {{/if}}
+              {{#if tooth_43}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>43</label> &nbsp;
+              {{/if}}
+              {{#if tooth_44}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>44</label> &nbsp;
+              {{/if}}
+              {{#if tooth_45}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>45</label> &nbsp;
+              {{/if}}
+              {{#if tooth_46}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>46</label> &nbsp;
+              {{/if}}
+              {{#if tooth_47}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>47</label> &nbsp;
+              {{/if}}
+              {{#if tooth_48}}
+              <input type="checkbox" checked disabled="disabled">
+              <label>48</label> &nbsp;
+              {{/if}}
+
+            </div>
+            <hr>
+            <h5 class="modal-title">Tratamiento</h5>
+            <div class="form-group">
+              <textarea disabled rows="5" name="treatment" placeholder="{{treatment}}" class="form-control"></textarea>
+            </div>
+            <hr>
+          </center>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  
+  <!--Modal #5 Registrar Gasto-->
+  <div class="modal fade" id="AddGastoModal" tabindex="-1" aria-labelledby="MensageModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="MensageModalLabel"><i class="fas fa-comment-medical"></i>   Registrar Gasto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="col">
+          <div class="modal-body">
+            <center>
+              <h4 class="scard-subtitle mb-2 text-muted" size="4">Nuevo Gasto</h4>
+            </center>
+            <form action="/support/addGasto" method="POST">
+              <div class="form-group">
+                <input type="number" name="amount" min="1" max="999999" step="any" class="form-control"
+                  placeholder="$Monto">
+              </div>
+              <div class="form-group">
+                <input type="text" name="tittle" class="form-control" placeholder="Título">
+              </div>
+              <div class="form-group">
+                <textarea name="description" rows="4" class="form-control" placeholder="Descripción"></textarea>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success btn-block" onclick="AlertMsjOk('¡Gasto Guardado!')">
+                  Guardar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal #6 Editar Gasto-->
+  <div class="modal fade" id="EditGastoModal" tabindex="-1" aria-labelledby="MensageModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="MensageModalLabel">Editar Gasto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="col">
+          <div class="modal-body">
+            <center>
+              {{#each ListGastos}}
+              <h4 class="scard-subtitle mb-2 text-muted" size="4">{{id}}</h4>
+              {{/each}}
+            </center>
+            <form action="/support/editGasto" method="POST">
+              <div class="form-group">
+                <textarea name="description" rows="4" class="form-control" placeholder="Descripción"></textarea>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success btn-block" onclick="AlertMsjOk('¡Gasto Editado!')">
+                  Guardar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal #7 Ver Gastos-->
+  <div class="modal fade" id="GastoModal" tabindex="-1" aria-labelledby="MensageModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="MensageModalLabel"><i class="fas fa-comment-dollar"></i>   Gastos</h5>
+          {{#each SumaGastos}}
+          <h5 class="modal-title alignright-head">Total: {{toFixed suma_gastos 2}}$</h5>
+          {{/each}}
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            {{#each ListGastos}}
+            <div class="col">
+              <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                  <h5 class="card-subtitle mb-2 text-muted">#{{rownum}} {{tittle}} -{{id}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{moment add_dte format="DD-MMMM-YYYY"}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">{{moment add_dte format="h:mm a"}}</h6>
+                  <hr>
+                  <textarea cols="43" rows="3" disabled>{{description}}</textarea>
+                  <!--<a href="#" data-toggle="modal" data-target="#EditGastoModal" class="btn btn-info d-block">Editar</a>-->
+                  <a href="#" class="btn btn-info d-block"
+                    onclick="AlertDel('El','','Gasto','Actualizar','Actualizado','/support/editGasto/',{{id}},'{{tittle}}')">Editar</a>
+                  <br>
+                  <a href="#" class="btn btn-success d-block"
+                    onclick="AlertDel('El','','Gasto','Cancelar','Cancelado','/support/canceledGasto/',{{id}},'{{tittle}}')">Cancelar</a>
+                  <br>
+                  <a href="#" class="btn btn-danger d-block"
+                    onclick="AlertDel('El','permanentemente','Gasto','Eliminar','Eliminado','/support/deleteGasto/',{{id}},'{{tittle}}')">Eliminar</a>
+                  <hr>
+                  <h9 class="card-text">By {{usuario}}</h9>
+                  <h9 class="card-text alignright-foot">{{toFixed amount 2}}$</h9>
+                  <br>
+                </div>
+              </div>
+            </div>
+            {{else}}
+            <div class="col">
+              <center>
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">sin Gastos </h5>
+                    <p class="card-text">
+                      Aun no se tienes Gastos para mostrar
+                    </p>
+                    <hr>
+                  </div>
+                </div>
+              </center>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal #8 Registrar Factura-->
+  <div class="modal fade" id="AddCajaModal" tabindex="-1" aria-labelledby="MensageModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="MensageModalLabel"><i class="fas fa-cash-register"></i>   Registrar Factura</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="col">
+          <div class="modal-body">
+            <center>
+              <h4 class="scard-subtitle mb-2 text-muted" size="4">Nueva Factura</h4>
+            </center>
+            <form action="/support/addFactura" method="POST">
+              <div class="form-group">
+                <select name="patient" id="patient" required="required" class="form-control">
+                  <option value="">--PACIENTE--</option>
+                  {{#each ListPacientes}}
+                  <option value={{id}}>{{last_name}} {{first_name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="number" name="amount" min="1" max="999999" step="any" class="form-control"
+                  placeholder="$Costo">
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success btn-block" onclick="AlertMsjOk('¡FACTURADO! Ahora vincule esta factura a un expediente')">
+                  Guardar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal #9 Ver Facturas-->
+  <div class="modal fade" id="FacturaModal" tabindex="-1" aria-labelledby="MensageModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="MensageModalLabel"><i class="fas fa-desktop"></i>   Facturas</h5>
+          {{#each SumaFacturas}}
+          <h5 class="modal-title alignright-head">Total: {{toFixed suma_facturas 2}}$</h5>
+          {{/each}}
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+          {{#each ListFacturas}}
+            <div class="col">
+              <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                  <h5 class="card-subtitle mb-2 text-muted">#Factura No.{{id}}</h5>
+                  <hr>
+                  <h6 class="card-subtitle mb-2 text-muted">Paciente: {{first_name}} {{last_name}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Fecha: {{moment add_dte format="DD-MMMM-YYYY"}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Hora: {{moment add_dte format="h:mm a"}}</h6>
+                  <hr>
+                  <h6 class="card-subtitle mb-2 text-muted">Expediente: {{#if record}} #{{record}} {{else}}---{{/if}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Facturado?: {{sts_invoice}}</h6>
+                  <hr>
+                  <h6 class="card-subtitle mb-2 text-muted">Monto: {{toFixed amount 2}}$</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Saldo: {{toFixed balance 2}}$</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Cacelado?: {{cancelled}}</h6>
+                  <hr>
+                  <h6 class="card-subtitle mb-2 text-muted">Cuotas: {{cuotas}}</h6> 
+                  <h6 class="card-subtitle mb-2 text-muted">Tipo de Pago: {{paymtype}}</h6> 
+                  <h6 class="card-subtitle mb-2 text-muted">Pago/Abono: {{toFixed payment 2}}$</h6>
+                  <hr>
+                  <!--<a href="#" data-toggle="modal" data-target="#EditGastoModal" class="btn btn-info d-block">Editar</a>-->
+                  <a href="#" class="btn btn-info d-block"
+                    onclick="AlertDel('La','a un expediente','Factura','Vincular','Vinculada','/support/viewFactura/',{{id}},'{{tittle}}')">Vincular</a>
+                  <br>
+                  <a href="#" class="btn btn-success d-block"
+                    onclick="AlertDel('La','/ Abonar','Factura','Pagar','Pagado','/support/viewPayment/',{{id}},'{{{tittle}}}')">Pagar</a>
+                  <hr>
+                  <h9 class="card-text">Facturado por: {{usuario}}</h9>
+                  <br>
+                </div>
+              </div>
+            </div>
+          {{else}}
+            <div class="col">
+              <center>
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">sin Gastos </h5>
+                    <p class="card-text">
+                      Aun no se tienes Gastos para mostrar
+                    </p>
+                    <hr>
+                  </div>
+                </div>
+              </center>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal #10 Registrar Usuario -->
+  <div class="modal fade" id="AddUsuarioModal" tabindex="-1" aria-labelledby="AddUsuarioModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AddUsuarioModalLabel"><i class="fas fa-user-md"></i>   Registrar Usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {{#each DataSession}}
+				{{#if val_rol}}
+        <div class="modal-body">
+          <form action="/support/addUsuario" method="POST">
+            <div class="form-group">
+              <input type="text" name="username" class="form-control" placeholder="Usuario" autofocus>
+            </div>
+            <div class="form-group">
+             <input type="password" name="password"  class="form-control" placeholder="Constraseña">
+            </div>
+            <div class="form-group">
+              <input type="text" name="nombre" class="form-control" placeholder="nombre">
+            </div>
+            <div class="form-group">
+              <input type="text" name="apellido" class="form-control" placeholder="Apellido">
+            </div>
+            <div class="form-group">
+              <input type="text" name="documento" class="form-control" placeholder="Cédula / Pasaporte">
+            </div>
+            <div class="form-group">
+              <select name="rol" id="rol" required="required" class="form-control">
+                <option value="">--Rol Accesos--</option>
+                <option value=1>Administrativo</option>
+                <option value=2>Usuario</option>
+                <option value=3>Paciente</option>
+              </select>          
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success btn-block" onclick="AlertMsjOk('¡Usuario Registrado!')">
+                Guardar
+              </button>
+            </div>
+          </form>
+        {{else}}
+                <center>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body"  style="color:rgb(200, 0, 0)">
+                            <h5 class="card-title">¡SIN PRIVILEGIOS!</h5>
+                            <p class="card-text">{{#if fname_log}}{{fname_log}}{{/if}}, no tienes permisos para registrar nuevos usuarios. <br> Contacta a Soporte Técnico</p>
+                        </div>
+                    </div>
+                </center> 
+        {{/if}}
+				{{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal #11 Agendar Cita-->
+  <div class="modal fade" id="AddCitaModal" tabindex="-1" aria-labelledby="AddCitaModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="AddCitaModalLabel"><i class="fas fa-calendar-alt"></i>   Agendar Cita</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/support/addCita" method="POST">
+            <div class="form-group">
+                <select name="doctor" id="doctor" required="required" class="form-control">
+                  <option value="">--DOCTOR--</option>
+                  {{#each ListDoctores}}
+                  <option value={{id}}>{{last_name}} {{first_name}} ({{especialidad}})</option>
+                  {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="patient" id="patient" required="required" class="form-control">
+                  <option value="">--PACIENTE--</option>
+                  {{#each ListPacientes}}
+                  <option value={{id}}>{{last_name}} {{first_name}}</option>
+                  {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+              <input type="date" name="date" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="time" name="time" class="form-control">
+            </div>
+              <div class="form-group">
+                <textarea rows="5" name="observations" placeholder="Describa alguna observación sobre la cita..."
+                  class="form-control"></textarea>
+              </div>
+            <div class="form-group">
+              <button class="btn btn-success btn-block" onclick="AlertMsjOk('¡Cita Agendada!')">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

@@ -1,0 +1,76 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<!--Importando Sweet Alert 2-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
+<!--Eliminar, Cancelar, Editar,  Gasto/Paciente-->
+<script>
+    function AlertMsjOk(title) {
+        Swal.fire
+            (
+                {
+                    position: 'center',
+                    icon: 'success',
+                    title: title,
+                    showConfirmButton: false,
+                    timer: 3000
+                }
+            )
+    }
+</script>
+
+<br><br>
+<div class="container">
+    <div class="login-width">
+        <div class="col-md- col-lg-5 mx-auto">
+            <center>
+                <h2 style="color: rgb(50,50,50); font-size: 40px;">
+                    Vincular Factura
+            </center>
+                    <hr>
+            {{#each ViewFactura}}
+            <center>
+                    <h4 class="card-subtitle mb-2 text-muted">Factura No.{{id}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Paciente: {{first_name}} {{last_name}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Fecha: {{moment add_dte format="DD-MMMM-YYYY"}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Hora: {{moment add_dte format="h:mm a"}}</h6>
+                    <hr>
+                    <h6 class="card-subtitle mb-2 text-muted">Cuotas: {{cuotas}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Monto: {{toFixed amount 2}}$</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Abonado: {{toFixed payment 2}}$</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Facturado por: {{usuario}}</h6>
+            </center>
+            {{/each}}
+            <center>
+            <hr><br>
+            <form action="" method="POST">
+                <br>
+                <div class="form-group">
+                    <select name="record" id="record" required="required" class="form-control" style="text-align: center;">
+                        <option value="">--Seleccione expediente a vincular--</option>
+                        {{#each ListExpedientes}}
+                        <option value={{id}}>Expediente #{{id}} - {{moment add_dte format="DD/MMM/YYYY h:m a"}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <br><br><br>
+                {{#each ViewFactura}} 
+                {{#if record}}
+                <center>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body"  style="color:rgb(200, 0, 0)">
+                            <h5 class="card-title">Factura Vinculada</h5>
+                            <p class="card-text"> Esta factura ya fue vinculada al expediente #{{record}}</p>
+                        </div>
+                    </div>
+                </center> 
+                {{else}}
+                <div class="row">
+                    <button class="btn btn-success btn-block" onclick="AlertMsjOk('¡Factura Vinculada!')">Vincular</button>
+                </div>
+            </form>
+            </center>
+            {{/if}}
+        {{/each}}
+        </div>
+    </div>
+</div>

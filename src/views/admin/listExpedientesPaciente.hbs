@@ -1,0 +1,91 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<!--Importando Sweet Alert 2-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
+<br><br>
+
+<!--Ver Expedientes de Paciente-->
+<script>
+	function AlertVer(tipo, func1, func2, ruta, id) 
+	{
+		Swal.fire
+			(
+				{
+					title: '¿Desea ver el Expediente' + "<i style='color:green'>" +' #' + id +' </i>?',
+					text: 'Será redirigido este expediente ',
+					icon: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#115f23',
+					cancelButtonColor: '#99d600',
+					cancelButtonText: 'No',
+					confirmButtonText: func1
+				}
+			).then((result) => 
+			{
+				if (result.isConfirmed) 
+				{	
+					 window.location = ruta + id;
+				}
+			}
+			)
+	}
+</script>
+
+<style>
+td, th
+{
+	border: 1px solid #000000;
+	text-align: center;
+	padding: 8px;
+}
+</style>
+
+<div class="container">
+    <div class="login-width">
+        <div class="col-md- col-lg-5 mx-auto">
+            <center>
+                <h2 style="color: rgb(50,50,50); font-size: 40px;">
+                    Expedientes de:
+                </h2>
+            {{#each ViewPaciente}}
+            <h3 class="card-subtitle mb-2 text-muted">{{first_name}} {{last_name}} - {{age}} Años</h3>
+            {{/each}}
+            {{#if ListExpedientesPaciente}}
+            <table class="all" border="3" style="text-align:center; width:100%">
+            <thead>
+                <tr>
+                <th>No.</th>
+                <th>Fecha</th>
+                <th>Factura</th>
+                <th>Ver</th>
+                </tr>     
+            </thead>
+              {{/if}}  
+            <tbody>
+              {{#each ListExpedientesPaciente}}
+                <tr> 
+                <td>#{{id}}</td>
+                <td>{{moment add_dte format = "DD-MMM-YYYY h:mm a"}}</td>
+                <td>{{#if invoice}} #{{invoice}} {{else}}---{{/if}}</td>
+                <td><a href="#" onclick="AlertVer('Expediente','Ver','Redirigiendo','/support/viewExpediente/',{{id}})">
+                        <i class="fas fa-file-signature">
+                        </i>
+                    </a>
+                </td>
+                </tr>
+                {{else}}
+                <center>
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-body"  style="color:rgb(200, 0, 0)">
+                      <h5 class="card-title">Sin Expediente</h5>
+                      <p class="card-text">Este paciente aún no tiene expediente registrado.</p>
+                    </div>
+                  </div>
+                </center>
+                {{/each}}
+            </tbody>
+            </table>
+            </center><br>
+        </div>
+    </div>
+</div>

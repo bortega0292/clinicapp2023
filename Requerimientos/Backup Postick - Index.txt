@@ -1,0 +1,73 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <div class="col-4">
+                <div>
+                    <div class="card" style="width: 18rem; background-color: #a6e68b">
+                        <div class="card-body">
+                            <h5 class="card-title">Actividad</h5>
+                            <hr>
+                            {{#each CountUsuarios}}
+                            <h6>
+                                <i class="fas fa-user-check"></i>&nbsp;&nbsp;
+                                Usuarios Registrados: {{total_usuarios}}
+                            </h6>
+                            {{/each}}
+                            {{#each CountMensajes}}
+                            <h6>
+                                <hr>
+                                <i class="fas fa-envelope-open"></i>&nbsp;&nbsp;
+                                Mensajes Guardados: {{total_mensajes}}
+                            </h6>
+                            {{/each}}
+                            {{#each CountPacientes}}
+                            <h6>
+                                <hr>
+                                <i class="fas fa-tasks"></i>&nbsp;&nbsp;
+                                Pacientes Registrados: {{total_pacientes}}
+                            </h6>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            {{#each MostMensajes}}
+            <div class="col-4">
+                <div>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Mensaje # {{rownum}}</h5>
+                            <h8 class="card-subtitle mb-2 text-muted">{{moment add_dte format="DD-MMMM-YYYY"}}</h8>
+                            <p class="card-subtitle mb-2 text-muted">{{moment add_dte format="h:mm a"}}</p>
+                            <hr>
+                            <h5 class="card-title">{{tittle}}</h5>
+                            <p class="card-text">{{description}}</p>
+                            <hr>
+                            <h9 class="card-text">By {{usuario}}</h9>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            {{else}}
+            <div class="col-4">
+                <br>
+                <center>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Sin Mensajes </h5>
+                            <p class="card-text">
+                                No tiene mensajes creados para mostrar
+                            </p>
+                            <hr>
+                        </div>
+                    </div>
+                </center>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

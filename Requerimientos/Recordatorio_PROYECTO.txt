@@ -1,0 +1,55 @@
+Youtube TUtorial:
+https://www.youtube.com/watch?v=TL6g0JPxkvw&t=5284s
+
+CLEVER CLOUD
+============
+correo: bortega0292@gmail.com
+psswd: lostboys02
+bd: CLINICAPP_BD
+
+Host: bnojulv77z1v10cqstzx-mysql.services.clever-cloud.com
+Database Name: bnojulv77z1v10cqstzx
+User: uszminnjnjs24asx
+Password: sMfppsKveUtcfJ0ejvD6
+Port: 3306
+Conection URI: mysql://uszminnjnjs24asx:sMfppsKveUtcfJ0ejvD6@bnojulv77z1v10cqstzx-mysql.services.clever-cloud.com:3306/bnojulv77z1v10cqstzx
+CLI: mysql -h bnojulv77z1v10cqstzx-mysql.services.clever-cloud.com -P 3306 -u uszminnjnjs24asx -p bnojulv77z1v10cqstzx
+
+modulos a instalar:
+bcryptjs
+express-handlebars
+express-mysql-session
+express-session
+passport
+passport-local
+
+session= 
+secret: 'clinicapp28082022'
+
+const moment = require('moment');
+letmoment = moment().add(7, 'd');
+
+SELECT STR_TO_DATE('2022-08-29 09:00:45', '%Y-%m-%d %h:%i:%s');
+
+NOW
+=====
+correo: bortega0292@gmail.com
+psswd: verificacion por correo
+
+HEROKU
+======
+correo: bortega0292@gmail.com
+psswd: M@dbarber02
+
+show global variables like '%connections%';
+show status like '%connected%';
+show full processlist;
+
+NodeMailer(Recuperar contraseña por correo)
+
+cd C:\mamp\bin\mysql\bin
+mysql -h bnojulv77z1v10cqstzx-mysql.services.clever-cloud.com -P 3306 -u uszminnjnjs24asx -p bnojulv77z1v10cqstzx
+sMfppsKveUtcfJ0ejvD6
+
+Ejemplo BD:
+http://www.bitacorasoftware.com/2018/06/sistema-gestion-de-citas-parte-1-base.html

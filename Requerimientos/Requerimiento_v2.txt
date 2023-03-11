@@ -1,0 +1,42 @@
+    ========================================================
+-FALTA POR APROBAR Y COTIZAR
+========================================================
+[OK] 5. Crear tabla Citas
+  (ok) a.id
+  (ok) b.medico
+  (ok) c.paciente
+  (ok) d.fecha / hora
+  (ok) f.estatus (Pendiente,Realizada,Expirada,Cancelada) (1,2,3,4)
+  (ok) g.observaciones
+  (ok) h.add_user
+  (ok) i.add_dte
+
+
+[OK] 5. Agragar a al menú lateral (Registrar Cita)
+[OK] 5.2 Registro de Cita(CREAR)
+  (ok) a.Lista para seleccionar Doctor
+  (ok) b.Lista para seleccionar pacientes
+  (ok) c.Calendario para seleccionar la fecha
+  (ok) d.Reloj para seleccionar la hor
+  (ok) e.Poner una Observación
+[OK] 5.3 Agregar al Grid principal de la mantalla las sitas pendientes
+
+[OK] 1. Al realizar un pago, actualiza el registro; Debe insertar un registro nuevo y sumarlo para mostrar.
+[OK] 2. En ver Expedientes agregar pagos con varias lineas en el subreporte abajo (pago,tipo)  cancelado = si (abajo)
+[OK] 3. cancelado? SI / NO
+[OK] 4. no suma/agrega abono
+[OK] 5. Total facturas / solo lo pendiente
+[OK] 6. quitar piezas de más (11-18, 21-28, 31-38, 41-48) 
+[OK] 7. migrar el boton de registrar usuario al bar menu de inicio 
+[OK] 8. ponerle permiso solo admin puedan registrar usuarios
+
+[OK] 9. Crear Tablas - doctores
+[OK] 10. Automatizar estatus de citas (Expirada si pasa el tiempo)
+[] 11. Corregir la validación de contraseñas en LOgin
+[] 12. Automatizar gastos 
+[] 13. Alertas de notificaciones
+[] 14. Validaciones de duplicado de registro
+[] 15. Triguer para almacenar actualizaciones y eliminaciones de registros.
+[] 16. Agregar un reloj con la hora de sistema
+[] 17. migrar la funcion que encripta contraseña al modal de agg usuario
+       o  ocultarla y dejar la de afuera funcionando.
