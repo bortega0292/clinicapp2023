@@ -32,6 +32,7 @@
 
 [OK] 9. Crear Tablas - doctores
 [OK] 10. Automatizar estatus de citas (Expirada si pasa el tiempo)
+[OK] - Crear superusuario de sistema clinicapp
 [] 11. Corregir la validación de contraseñas en LOgin
 [] 12. Automatizar gastos 
 [] 13. Alertas de notificaciones

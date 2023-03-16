@@ -53,3 +53,11 @@ sMfppsKveUtcfJ0ejvD6
 
 Ejemplo BD:
 http://www.bitacorasoftware.com/2018/06/sistema-gestion-de-citas-parte-1-base.html
+
+Crear archivos Excel con node.js (Fácil en pocos minutos):
+https://www.youtube.com/watch?v=SKc0iquaAqk
+
+SuperUsuario
+=============
+User:CLINICAPP
+Psw:CLINICAPP2022
