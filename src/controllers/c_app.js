@@ -15,7 +15,7 @@ let index = async(req, res) =>
     const countUsuarios = await pool.query('CALL CountUsuarios');
     const mostCitas = await pool.query(`CALL ListCitas ('${Add_Dte}')`);
     const mostDoctores = await pool.query(`CALL ListDoctores`);
-    
+
     let MostPacientes = mostPacientes[0];
     let MostGastos = mostGastos[0];
     let MostUsuarios = mostUsuarios[0];

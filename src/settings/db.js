@@ -17,7 +17,7 @@ pool.getConnection((err, conn) =>
         }
     }
     if(conn) conn.release();
-    console.log('La base de datos se a conectado a Clever-Cloud');
+    console.log('Conectado a BD en Clever-Cloud');
     return;
 });
 

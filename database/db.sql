@@ -754,3 +754,28 @@ SELECT c.*,
 ORDER BY c.date_time ASC;
 END
 $$
+
+-- Event Agregar Gasto
+DELIMITER $$
+CREATE EVENT AggGasto
+ON SCHEDULE 
+    EVERY 1 DAY 
+    STARTS '2023-03-01 00:00:00'
+ON COMPLETION PRESERVE
+DO
+BEGIN
+SET @HOY := DATE_SUB(NOW(), INTERVAL 5 HOUR);
+SET @DIA := DAYOFMONTH(@HOY);
+SET @ULTIMO_DIA := LAST_DAY(@HOY);
+SET @MES := MONTHNAME(@HOY);
+SET @ULTIMO_HOY := DATE_FORMAT(@HOY, '%Y-%m-%d');
+
+IF @DIA = 15 THEN
+    CALL AddGasto('Contrato de Limpieza', CONCAT('1er Pago del mes a Maria Acosta - ', @MES, EXTRACT(DAY FROM @HOY)), 2, @HOY, 80.50);
+END IF;
+
+IF @ULTIMO_DIA = @ULTIMO_HOY THEN
+    CALL AddGasto('Contrato de Limpieza', CONCAT('2do Pago del mes a Maria Acosta - ', @MES, EXTRACT(DAY FROM @HOY)), 2, @HOY, 80.50);
+END IF;
+END
+$$

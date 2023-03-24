@@ -1,5 +1,5 @@
 0- Implementar Swal en login-validaciones
-1- Trabajar en el Login (BackEnd - Validacion de COntraseña)
+[OK] 1- Trabajar en el Login (BackEnd - Validacion de COntraseña)
 3- Migrar pantalla Editar a Modal
 4- Implementación de animación de espera (Reload).
 5- Al cerrar el navegador se destrulla la sesion.

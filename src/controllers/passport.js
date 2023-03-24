@@ -2,19 +2,44 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const helpers = require('./helpers');
 const pool = require('../settings/db');
-passport.use('local.signup', new LocalStrategy(
+passport.use('local.signin', new LocalStrategy(
     {
         usernameField: 'username',
         passwordField: 'password',
         passReqToCallback: true,
-        
     }, async (req, username, password, done) =>
-    {   const {nombre, apellido, Documento, Rol} = req.body;
-
-        let documento = Documento;
+    {
+      const resp = await pool.query('SELECT * FROM usuarios WHERE username =?',[username]);
+        if (resp.length > 0) 
+	{
+           const user = resp[0];
+           const validPass = await helpers.matchPassword(password, user.password);
+           if (validPass) 
+	   {
+	     done(null, user);
+           }
+	   else 
+	   {
+	     done(null, false );
+	   }
+	} 
+	else 
+	{
+          return done(null, false);
+	}
+}));
+passport.use('local.signup', new LocalStrategy(
+ {
+   usernameField: 'username',
+   passwordField: 'password',
+   passReqToCallback: true,
+ }, async (req, username, password, done) => 
+  { 
+    const {nombre, apellido, Documento, Rol} = req.body;
+        let documento = parseInt(Documento);
         let rol = parseInt(Rol);
         let newUser = 
-        {
+	{
             username,
             password,
             nombre,
@@ -23,10 +48,9 @@ passport.use('local.signup', new LocalStrategy(
             rol
         };
         console.log(password);
-        newUser.password = helpers.encryptPass(password);
+	newUser.password = await helpers.encryptPassword(password);
         console.log(password);
         const result = await pool.query('INSERT INTO usuarios SET ?', newUser);
-
         newUser.id = result.insertId;
         return done(null, newUser);
     }));
@@ -43,7 +67,7 @@ passport.use('local.signup', new LocalStrategy(
             if (resp.length > 0)
             {
                 const user = resp[0];
-                const validPass = helpers.matchPass(password, user.password);
+                const validPass = await helpers.matchPassword(password, user.password);
                 if(validPass)
                 {
                     done(null, user);
@@ -69,4 +93,4 @@ passport.use('local.signup', new LocalStrategy(
     {
         const resp = await pool.query('SELECT * FROM usuarios WHERE id =?',[id]);
         done(null, resp[0]);
-    })
+    });

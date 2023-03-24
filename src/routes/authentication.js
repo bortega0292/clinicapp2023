@@ -17,9 +17,10 @@ app.post('/signin',isNotLoggedIn,(req, res, next) =>
     passport.authenticate('local.signin',
         {
             successRedirect:'/support/dashboard',
-            failureRedirect: '/error',
+            failureRedirect:'/req/signin',
             failureFlash: true
         })(req, res, next);
+        
 });
 
 app.get('/logout', (req, res) =>

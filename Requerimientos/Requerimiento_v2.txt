@@ -32,12 +32,15 @@
 
 [OK] 9. Crear Tablas - doctores
 [OK] 10. Automatizar estatus de citas (Expirada si pasa el tiempo)
-[OK] - Crear superusuario de sistema clinicapp
-[] 11. Corregir la validación de contraseñas en LOgin
-[] 12. Automatizar gastos 
-[] 13. Alertas de notificaciones
-[] 14. Validaciones de duplicado de registro
-[] 15. Triguer para almacenar actualizaciones y eliminaciones de registros.
-[] 16. Agregar un reloj con la hora de sistema
-[] 17. migrar la funcion que encripta contraseña al modal de agg usuario
+
+[OK] 11. Crear superusuario de sistema clinicapp
+[OK] 12. Corregir la validación de contraseñas en LOgin
+
+[] 13. Poner SweetAlert en validacion de Login
+
+[] 14. Automatizar gastos 
+[] 15. Alertas de notificaciones
+[] 16. Triguer para almacenar actualizaciones y eliminaciones de registros.
+[] 17. Agregar un reloj con la hora de sistema
+[] 18. migrar la funcion que encripta contraseña al modal de agg usuario
        o  ocultarla y dejar la de afuera funcionando.
