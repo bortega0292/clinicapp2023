@@ -9,6 +9,7 @@
         <div class="modal-body">
           <center>
             <h5>Expediente #{{id}}</h5>
+            {{moment add_dte format = "DD-MMM-YYYY h:mm a"}}
             <div class="form-group">              
               <div>
                 <i class="fas fa-user-alt"></i>
@@ -189,8 +190,8 @@
             {{/if}}
 {{/each}}
 <br>
-<h5 class="modal-title">Pagos</h5>
 {{#if ViewPago}}
+        <h5 class="modal-title">Pagos</h5>
           <table class="all" border="2" style="text-align:center; width:100%">
             <thead>
                 <tr>

@@ -1,16 +1,18 @@
-// Extraer Fecha de sistema con moment 
+// Extraer Fecha de sistema con moment
 const moment = require('moment');
 const pool = require('../settings/db');
 
 // Envia Procedimientos a HandleBars Admin
 let allVistas = async (req, res) =>
-{  
+{
+    const {id_cita} = req.params;
+    let Id_Cita = parseInt(id_cita);
     const user_id = req.user.id;
     let Add_User = user_id;
     const fecha = moment().format('YYYY-MM-DD HH:mm:ss');
     let Add_Dte = fecha;
-    const datasession = await pool.query(`CALL ViewDataSession (${Add_User})`);
-    const listUsuarios = await pool.query('CALL ListUsuarios');
+    const datasession = await pool.query(`CALL ViewDataSession ('${Add_User}')`);
+    const listUsuarios = await pool.query(`CALL ListUsuarios ('${Add_User}')`);
     const listPacientes = await pool.query('CALL ListPacientes');
     const listGastos  = await pool.query('CALL ListGastos');
     const listFacturas  = await pool.query('CALL ListFacturas');
@@ -22,6 +24,7 @@ let allVistas = async (req, res) =>
     const sumaFacturas = await pool.query('CALL SumaFacturas(@suma_facturas)');
     const listCitas = await pool.query(`CALL ListCitas ('${Add_Dte}')`);
     const listDoctores = await pool.query('CALL ListDoctores');
+    const viewCita = await pool.query(`CALL ViewCita (1)`);
 
     let DataSession = datasession[0];
     let ListUsuarios = listUsuarios[0];
@@ -36,8 +39,9 @@ let allVistas = async (req, res) =>
     let SumaFacturas = sumaFacturas[0];
     let ListCitas = listCitas[0];
     let ListDoctores = listDoctores[0];
+    let ViewCita = viewCita[0];
 
-    res.render('admin/admin', {DataSession, ListUsuarios, ListPacientes, ListGastos, ListFacturas, LastPacientes, CountUsuarios, CountPacientes, CountGastos, SumaGastos, SumaFacturas, ListCitas, ListDoctores});
+    res.render('admin/admin', {DataSession, ListUsuarios, ListPacientes, ListGastos, ListFacturas, LastPacientes, CountUsuarios, CountPacientes, CountGastos, SumaGastos, SumaFacturas, ListCitas, ListDoctores, ViewCita});
 }
 
 // Funcion para Agregar Usuario

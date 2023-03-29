@@ -78,7 +78,7 @@
 
 <!--Eliminar, Cancelar, Editar, Ver, Gasto/Paciente-->
 <script>
-	function AlertDel(s, p, tipo, func1, func2, ruta, id, desc) 
+	function AlertDel(s, p, tipo, func1, func2, ruta, id, desc, depend_exped) 
 	{
 		Swal.fire
 			(
@@ -96,9 +96,22 @@
 			{
 				if (result.isConfirmed) 
 				{	
-
-					 if(func1 != 'Actualizar' && func1 !='Vincular' && func1 != 'Pagar')
+					 if(func1==='Eliminar' && depend_exped>0)
 					 {
+						Swal.fire
+						(
+							{
+								icon: 'error',
+								title: 'Error al '+ func1 +' '+tipo,
+								text: 'Este '+tipo+' mantiene '+depend_exped+ ' expediente registrado y no puede eliminarse',
+								confirmButtonColor: '#eb4d4b'
+							}
+						)
+					 }
+					 else
+					 { 
+					  if(func1 != 'Actualizar' && func1 !='Vincular' && func1 != 'Pagar')
+					  {
 						Swal.fire
 							(
 								{
@@ -112,6 +125,7 @@
 					 };
 					 
 					 window.location = ruta + id;
+					}
 				}
 			}
 			)
@@ -144,7 +158,7 @@
 		</li>-->
 
 		<li class="sidebar-nav-item">
-			<a href="#" class="sidebar-nav-link active">
+			<a href="#" data-toggle="modal" data-target="#ViewUserModal" class="sidebar-nav-link active">
 				<div>
 					<i class="fas fa-user-circle a"></i>
 				</div>
@@ -325,7 +339,20 @@
 						<tbody>
 							{{#each ListCitas}}
 							<tr>
-								<td>#{{id}}</td>
+								<td><a href="#" data-toggle="modal" data-target="#UpdateCitaModal" id="{{id_cita}}">#{{id}}</a></td>
+								<script>
+// Define una función que se llame cuando se cargue la página
+window.onload = function() {
+  // Obtiene el elemento <td> por su id
+  var td = document.getElementById("{{id_cita}}");
+
+  // Obtiene el valor del id del elemento <td>
+  var id_cita = td.getAttribute("id_cita");
+
+  // Utiliza el valor de id como variable en tu archivo .js
+  console.log("El id del elemento <td> es: " + id_cita);
+};									
+								</script>
 								<td>{{paciente}}</td>
 								<td>{{moment date_time format="DD-MMM-YYYY"}}</td>
 								<td>{{moment date_time format="h:mm a"}}</td>

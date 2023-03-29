@@ -1,5 +1,5 @@
-    ========================================================
--FALTA POR APROBAR Y COTIZAR
+========================================================
+-FALTA POR APROBAR
 ========================================================
 [OK] 5. Crear tabla Citas
   (ok) a.id
@@ -29,18 +29,29 @@
 [OK] 6. quitar piezas de más (11-18, 21-28, 31-38, 41-48) 
 [OK] 7. migrar el boton de registrar usuario al bar menu de inicio 
 [OK] 8. ponerle permiso solo admin puedan registrar usuarios
-
 [OK] 9. Crear Tablas - doctores
 [OK] 10. Automatizar estatus de citas (Expirada si pasa el tiempo)
-
 [OK] 11. Crear superusuario de sistema clinicapp
 [OK] 12. Corregir la validación de contraseñas en LOgin
+[OK] 13. Automatizar gastos 
 
-[] 13. Poner SweetAlert en validacion de Login
+#Agregar Fecha en Ver Expediente.
+#Validaciones No eliminar reguistro que sea foraneo en otra tabla.
+#Mejora remplazar vincular por agregar lista de expedientes en reg.fact
+ (luego hacer el update para vincular y eliminar ese paso).
+# Validacion en pagos que no exeda la deuda.
+#Agregar modal para editar estatus/comentario de citas.
 
-[] 14. Automatizar gastos 
-[] 15. Alertas de notificaciones
-[] 16. Triguer para almacenar actualizaciones y eliminaciones de registros.
-[] 17. Agregar un reloj con la hora de sistema
-[] 18. migrar la funcion que encripta contraseña al modal de agg usuario
-       o  ocultarla y dejar la de afuera funcionando.
+[] 14. Triguer para almacenar UPDATES y DELETES de registros.
+[] 15. Agregar un reloj con la hora de sistema
+[] 16. Implementación de animación de espera (Reload)
+[] 17. Alertas de notificaciones
+
+[] 18. Implementar SweetAlert en validacion de Login
+[] 19. Al cerrar el navegador se destrulla la sesion.
+[] 20. migrar la funcion que encripta contraseña al modal de agg usuario.
+[] 21. Cambiar las pantallas con cards por grids.
+[] 22. Migrar todas las pantallas de Editar a Modales
+[] 23. Cambiar formato de f.expira en sessions. (programar fecha).
+
+video SESSIONS (express session & connect-flash | Seesion en Node JS y Express

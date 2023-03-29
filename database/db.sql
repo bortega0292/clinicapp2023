@@ -755,6 +755,37 @@ ORDER BY c.date_time ASC;
 END
 $$
 
+-- View Cita
+DELIMITER $$
+CREATE PROCEDURE ViewCita
+(
+   in num INT(11)
+)
+SELECT c.*,
+       CONCAT(d.first_name,' ',d.last_name) medico,
+       CONCAT(p.first_name,' ',p.last_name) paciente,
+       CASE WHEN c.estatus = 1 THEN 'Pendiente'
+            WHEN c.estatus = 2 THEN 'Realizada'
+            WHEN c.estatus = 3 THEN 'Expirada'
+            WHEN c.estatus = 4 THEN 'Cancelada'
+            ELSE NULL
+        END estado,
+       u.username AS usuario
+   FROM citas AS c
+   LEFT
+   JOIN doctores AS d
+     ON d.id = c.doctor
+   LEFT 
+   JOIN pacientes p
+     ON p.id = c.patient 
+   LEFT 
+   JOIN usuarios AS u
+     ON c.add_user = u.id
+WHERE c.id = num
+ORDER BY c.date_time ASC;
+END
+$$
+
 -- Event Agregar Gasto
 DELIMITER $$
 CREATE EVENT AggGasto

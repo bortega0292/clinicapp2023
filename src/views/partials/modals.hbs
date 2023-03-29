@@ -139,6 +139,8 @@
                   <p class="card-subtitle mb-2 text-muted"><b>Hipertensión: </b>{{hypert}}</p>
                   <p class="card-subtitle mb-2 text-muted"><b>Embarazo: </b>{{pregncy}}</p>
                   <hr>
+                  <p class="card-subtitle mb-2 text-muted"><b>Expedientes: </b>{{depend_exped}}</p>
+                  <hr>
                   <a href="#" class="btn btn-info d-block"
                     onclick="AlertDel('El','los datos','Paciente','Actualizar','Actualizado','/support/editPaciente/',{{id}},'{{first_name}} {{last_name}}')">Editar</a>
                   <br>
@@ -147,7 +149,7 @@
                     onclick="AlertVer('El','','Expedientes','Ver','Redirigiendo','/support/listExpedientesPaciente/',{{id}},'{{first_name}} {{last_name}}')">Expedientes</a>
                   <br>
                   <a href="#" id="BtnEliminarExpediente" class="btn btn-danger d-block"
-                    onclick="AlertDel('El','permanentemente','Paciente','Eliminar','Eliminado','/support/deletePaciente/',{{id}},'{{first_name}} {{last_name}}')">Eliminar</a>
+                    onclick="AlertDel('El','permanentemente','Paciente','Eliminar','Eliminado','/support/deletePaciente/',{{id}},'{{first_name}} {{last_name}}',{{depend_exped}})">Eliminar</a>
                   <hr>
                 </div>
               </div>
@@ -879,6 +881,74 @@
     </div>
   </div>
 
+  <!-- Modal #12 Datos de Usuario-->
+  <div class="modal fade" id="ViewUserModal" tabindex="-1" aria-labelledby="ViewUserModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ViewUserModalLabel"><i class="fas fa-user-circle a"></i>  Datos de Usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="centrar-form">
+          <img src="/img/NoUser.png" alt="NoUser" style="height: 150px; width: 150px;">
+          </div>
+          {{#each ListUsuarios}}
+          <div class="form-group">
+            <b>
+            <label>ID:</label>
+            <label for="id" class="form-control"># {{id}}</label>
+
+            <label>Usuario:</label>
+            <label for="usuario" class="form-control">{{username}}</label>
+
+            <label>Nombre:</label>
+            <label for="nombre" class="form-control">{{nombre}}</label>
+
+            <label>Apellido:</label>
+            <label for="apellido" class="form-control">{{apellido}}</label>
+
+            <label>Rol:</label>
+            <label for="rol" class="form-control">{{rol}}</label>
+            </b>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal #13 Actualizar Cita-->
+  <div class="modal fade" id="UpdateCitaModal" tabindex="-1" aria-labelledby="UpdateCitaModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-x4">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ViewUserModalLabel"><i class="fas fa-calendar-alt"></i> Actualizar Cita</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{#each ViewCita}}
+          <div class="form-group">
+            <b>
+            <label>Medico:</label>
+            <label for="medico" class="form-control">{{medico}}</label>
+            <label>Paciente:</label>
+            <label for="paciente" class="form-control">{{paciente}}</label>
+            <label>Estatus:</label>
+            <label for="estatus" class="form-control">{{estado}}</label>
+            </b>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
