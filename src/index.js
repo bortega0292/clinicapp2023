@@ -7,6 +7,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const {database} = require('./settings/keys');
+const pool = require('./settings/db');
 const MySQLStore = require('express-mysql-session')(session);
 const path = require('path');
 
@@ -32,7 +33,19 @@ app.use(session(
         secret: 'cursocrudmysqlynodejs',
         resave: false,
         saveUninitialized: false,
-        store: new MySQLStore(database)
+        store: new MySQLStore({
+            host: database.host,
+            user: database.user,
+            password: database.password,
+            database: database.database,
+            port: database.port,
+            createDatabaseTable: true, 
+            expiration: 86400 * 1000, 
+            clearExpired: {
+                cron: '0 0 * * *' 
+            },
+            pool: pool
+        })
     }));
 app.use(passport.initialize());
 app.use(passport.session());

@@ -54,7 +54,7 @@ passport.use('local.signup', new LocalStrategy(
         newUser.id = result.insertId;
         return done(null, newUser);
     }));
-    
+/*    
     passport.use('local.signin', new LocalStrategy(
         {
             usernameField:'username',
@@ -83,7 +83,7 @@ passport.use('local.signup', new LocalStrategy(
             }
         }
     ))
-
+*/
     passport.serializeUser((user, done) =>
     {
         done(null, user.id);

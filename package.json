@@ -24,7 +24,6 @@
     "handlebars-helpers": "^0.10.0",
     "moment": "^2.29.4",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
     "mysql2": "^3.14.1",
     "now": "^21.0.1",
     "passport": "^0.6.0",
