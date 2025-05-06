@@ -17,7 +17,7 @@ pool.getConnection((err, conn) =>
         }
     }
     if(conn) conn.release();
-    console.log('Conectado a BD en Clever-Cloud');
+    console.log('Conectado a BD en Clever-Cloud version 2025');
     return;
 });
 
