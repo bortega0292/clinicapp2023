@@ -2,10 +2,10 @@ module.exports =
 {
     database:
     {
-      host: 'blak134dineo5wgpqygz-mysql.services.clever-cloud.com',
+      host: 'bsbmwolziu9ylgq5pmyl-mysql.services.clever-cloud.com',
       user: 'uszminnjnjs24asx',
-      database: 'blak134dineo5wgpqygz',
-      port: '3306',
+      database: 'bsbmwolziu9ylgq5pmyl',
+      port: '20988',
       password: 'sMfppsKveUtcfJ0ejvD6'
     }
 }
