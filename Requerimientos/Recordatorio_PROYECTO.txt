@@ -4,7 +4,7 @@ https://www.youtube.com/watch?v=TL6g0JPxkvw&t=5284s
 CLEVER CLOUD
 ============
 correo: bortega0292@gmail.com
-psswd: lostboys02
+psswd: contraseña1
 bd: CLINICAPP_BD
 
 Host: bnojulv77z1v10cqstzx-mysql.services.clever-cloud.com
@@ -39,7 +39,7 @@ psswd: verificacion por correo
 HEROKU
 ======
 correo: bortega0292@gmail.com
-psswd: M@dbarber02
+psswd: contraseña2
 
 show global variables like '%connections%';
 show status like '%connected%';
